@@ -27,66 +27,30 @@
                      </div>
                      <ul class="list-group list-group-flush">
                          <li class="list-group-item">ALL</li>
-                         <li class="list-group-item">Cras justo odio</li>
-                         <li class="list-group-item">Dapibus ac facilisis in</li>
-                         <li class="list-group-item">Vestibulum at eros</li>
-
+                         {% for category in categories %}
+                         <li class="list-group-item">{{category.name}}</li>
+                         {% endfor %}
                              <a href="{% url 'add' %}" class="btn btn-dark btn-block btn-sm m-1">Add Photo</a>
-
                      </ul>
                 </div>
             </div>
             <div class="col-md-9">
                 <div class="row">
-
+                    {% for photo in photos %}
                    <div class="col-md-4">
                         <div class="card my-2">
                             <img class="image-thumbail"
-                                src="https://i.pinimg.com/736x/9d/83/0b/9d830b748a66862f20869af6952234d3.jpg"
+                                src="{{photo.image.url}}" alt="Card image cap"
                                 alt="Card image cap">
                             <div class="card-body">
-                            <small>Category: Pets</small>
+                            <small>Category: {{photo.category.name}}</small>
                             </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                            <a href="{% url 'photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
                         </div>
                    </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbail"
-                                src="https://media.baamboozle.com/uploads/images/201618/1614757734_512807_url.jpeg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                            <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                   </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbail"
-                                src="https://media.baamboozle.com/uploads/images/201618/1614757734_512807_url.jpeg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                            <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                   </div>
-
-                    <div class="col-md-4">
-                        <div class="card my-2">
-                            <img class="image-thumbail"
-                                src="https://media.baamboozle.com/uploads/images/201618/1614757734_512807_url.jpeg"
-                                alt="Card image cap">
-                            <div class="card-body">
-                            <small>Category: Pets</small>
-                            </div>
-                            <a href="{% url 'photo' 5 %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                        </div>
-                   </div>
-
+                        {% empty %}
+                        <h3>No photos...</h3>
+                    {% endfor %}
                 </div>
             </div>
         </div>
