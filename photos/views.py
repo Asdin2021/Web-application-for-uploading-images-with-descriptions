@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Category, Photo
 
 
@@ -23,6 +23,21 @@ def addPhoto(request):
     if request.method == "POST":
         data = request.POST
         image = request.FILES.get('image')
+
+        if data['category'] != 'none':
+            category = Category.objects.get(id=data['category'])
+        elif data['category_new'] != '':
+            category, created = Category.objects.get_or_create(name=data['category_new'])
+        else:
+            category = None
+
+        photo = Photo.objects.create(
+            category=category,
+            description=data['description'],
+            image=image,
+        )
+
+        return redirect('gallery')
 
 
     context = {'categories': categories}
