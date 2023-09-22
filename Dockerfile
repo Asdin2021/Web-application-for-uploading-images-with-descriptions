@@ -1,15 +1,7 @@
-FROM python:3.10-alpine
-
-WORKDIR /app
-
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-RUN apk update && \
-    apk add --no-cache gcc musl-dev libffi-dev openssl-dev && \
-    pip install --upgrade pip
-
-COPY requirements.txt .
+FROM python:3.9
+ENV PYTHONUNBUFFERED 1
+RUN mkdir /app
+WORKDIR /code
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-
 COPY . /app

@@ -1,25 +1,20 @@
-version: '3'
+   version: '3'
 
-services:
-  web:
-    build: ./
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./:/usr/src/app/
-    ports:
-      - '8000:8000'
-    env_file:
-      - ./.env
-
-
-
-
-
-
-
-
-
-
-
-
+   services:
+     web:
+       build: .
+       command: python manage.py runserver 0.0.0.0:8000
+       volumes:
+         - ./:/code/
+       expose:
+         - 8000
+     nginx:
+       image: nginx
+       volumes:
+         - ./nginx/default.conf:/host_mnt/Users/admin/Desktop/nikita/123/diplom1/nginx/default.conf
+         - ./static:/code/static
+       ports:
+         - '80:80'
+       depends_on:
+         - web
 
