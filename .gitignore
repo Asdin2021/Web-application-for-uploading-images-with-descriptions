@@ -4,8 +4,8 @@
 *.iml
 out
 gen
-staticfile
-..env
+/staticfile
+.env
 .db.sqlite3
 __pycache__/
 machinet.conf
