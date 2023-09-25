@@ -5,7 +5,7 @@
 out
 gen
 staticfile
-.env
-db.sqlite3
+..env
+.db.sqlite3
 __pycache__/
 machinet.conf
